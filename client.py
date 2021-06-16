@@ -1,12 +1,15 @@
 import socket,cv2, pickle,struct
 import pyshine as ps # pip install pyshine
 import imutils # pip install imutils
-camera = True
-if camera == True:
+camera = input("[0/1/2] webcam/IPCamera/Video: ")
+if camera == '0':
+	vid = cv2.VideoCapture(0)
+elif camera == '1':
 	vid = cv2.VideoCapture('http://192.168.43.1:8080/video')
-	#'http://192.168.43.1:8080/video'
-else:
+elif camera == '2':
 	vid = cv2.VideoCapture('videos/flask.mp4')
+else:
+	print("\n[ Device is not available] ")
 client_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 host_ip = '192.168.99.1' # Here according to your server ip write the address
 
